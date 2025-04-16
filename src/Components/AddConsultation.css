@@ -1,0 +1,45 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Spacing between form elements */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    font-size: 16px;
+  }
+  
+  .input {
+    /* Inherits styles from .form-control, you can add specific input styles here if needed */
+  }
+  
+  .button {
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #218838;
+  }
+  
+  /* Optional: Add some margin to the form container if it's not already in a layout */
+  /*
+  .form-container {
+    margin-bottom: 20px;
+  }
+  */

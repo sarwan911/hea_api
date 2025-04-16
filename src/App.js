@@ -4,12 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Appointment from './Components/Appointment';
 import UserRegistration from './Components/UserRegistration';
 // import Consultations from './Components/Consultations';
-// import Consultations from './Components/Dashboard';
 import ViewNotifications from './Components/ViewNotifications';
 import './Styles.css';
 import PatientDashboard from './Dashboard/patientdashboard';
 import DoctorDashboard from './Dashboard/doctordashboard';
-import Login from './Components/login';
+import Login from './Components/Login';
 import Home from './Components/Home';
 import { UserProvider } from './Components/UserContext';
 import Navbar from './Navbar/Navbar';
@@ -38,8 +37,6 @@ function App() {
           <Route path="/patientdashboard" element={<PatientDashboard />} />
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/appointments" element={<Appointment />} />
-          {/* <Route path="/prescriptions" element={<Consultations />} /> */}
-          <Route path="/UserRegistration" element={<UserRegistration />} />
           <Route path="/ViewNotification" element={<ViewNotifications />} />
         </Routes>
       </Router>

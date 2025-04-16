@@ -4,6 +4,7 @@ import Appointment from '../Components/Appointment'; // Adjust the path if neces
 import Sessions from '../Components/Sessions';     // Adjust the path if necessary
 import ViewNotifications from '../Components/ViewNotifications'; // Adjust the path if necessary
 import ProfilePage from '../Components/ProfilePage';
+import Consultations from '../Components/Consultations';
 import './patientdashboard.css'; // Import the CSS file
 
 const PatientDashboard = () => {
@@ -15,6 +16,8 @@ const PatientDashboard = () => {
         return <Sessions />;
       case 'Appointment':
         return <Appointment />;
+      case 'Consultations':
+        return <Consultations />;
       case 'ViewNotifications':
         return <ViewNotifications />;
       case 'ProfilePage':
@@ -38,6 +41,12 @@ const PatientDashboard = () => {
           onClick={() => setActiveComponent('Appointment')}
         >
           Appointment
+        </button>
+        <button
+          className={activeComponent === 'Consultations' ? 'active' : ''}
+          onClick={() => setActiveComponent('Consultations')}
+        >
+          Consultations
         </button>
         <button
           className={activeComponent === 'ViewNotifications' ? 'active' : ''}

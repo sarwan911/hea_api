@@ -1,0 +1,14 @@
+.button {
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    padding: 8px 12px; /* Slightly smaller padding for a delete button */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px; /* Slightly smaller font size */
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #c82333;
+  }

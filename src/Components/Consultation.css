@@ -1,0 +1,99 @@
+.container {
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .thead-dark th {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    border: 1px solid #454d55;
+    text-align: left;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  tbody td:last-child {
+    white-space: nowrap; /* Prevent buttons from wrapping */
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* Style for the Add Consultation form (you can adjust as needed) */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  .form .button { /* Specificity for the Add button */
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+  }
+  
+  /* Style for the Edit Consultation form (you can adjust as needed) */
+  .form h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .form .btn-primary { /* Specificity for the Edit button */
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+  }

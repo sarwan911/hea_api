@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import HandlingSessions from '../Components/HandlingSessions';
 import Consultations from '../Components/Consultations';
 import ProfilePage from '../Components/ProfilePage';
-// import ConsultationsD from '../Components/Dashboard';
+import Consultation from '../Components/Consultation';
+import NotificationComponent from '../Components/Notification';
 import './doctordashboard.css';
 
 const DoctorDashboard = () => {
@@ -13,10 +14,12 @@ const DoctorDashboard = () => {
     switch (activeComponent) {
       case 'HandlingSessions':
         return <HandlingSessions />;
-      // case 'New Consultations':
-      //   return <ConsultationsD />; 
+      case 'Consultation':
+        return <Consultation />; 
       case 'Consultations':
         return <Consultations />;
+      case 'Notification':
+      return <NotificationComponent /> ;
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
@@ -33,18 +36,24 @@ const DoctorDashboard = () => {
         >
           Handling Sessions
         </button>
-        {/* <button
-          className={activeComponent === 'ConsultationsD' ? 'active' : ''}
-          onClick={() => setActiveComponent('ConsultationD')}
+        <button
+          className={activeComponent === 'Consultation' ? 'active' : ''}
+          onClick={() => setActiveComponent('Consultation')}
           >
-            New Consultations
-          </button> */}
+            Consultation
+          </button>
         <button
           className={activeComponent === 'Consultations' ? 'active' : ''}
           onClick={() => setActiveComponent('Consultations')}
         >
           Consultations
         </button>
+        <button
+          className={activeComponent === 'Notification' ? 'active' : ''}
+          onClick={() => setActiveComponent('Notification')}
+        >
+          Notification
+        </button>        
         <button
           className={activeComponent === 'ProfilePage' ? 'active' : ''}
           onClick={() => setActiveComponent('ProfilePage')}
