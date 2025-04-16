@@ -1,0 +1,125 @@
+/* sessions.css */
+.sessions-container {
+    padding: 20px;
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sessions-title {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Updated CSS for the filter button and section */
+.sessions-filter-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto; /* Push to the right */
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    display: block; /* Ensure it takes its own line */
+    width: fit-content; /* Adjust width to content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.sessions-filter-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly enhance shadow on hover */
+}
+
+.sessions-filter-section {
+    background-color: #f8f9fa; /* Lighter background */
+    padding: 20px; /* More padding */
+    border-radius: 8px; /* More rounded */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Softer, wider shadow */
+    border: 1px solid #dee2e6; /* Light border */
+}
+
+.sessions-filter-section h3 {
+    color: #495057; /* Slightly darker text */
+    margin-top: 0;
+    margin-bottom: 15px; /* More spacing below heading */
+    border-bottom: 2px solid #e0e0e0; /* Add a subtle bottom border */
+    padding-bottom: 10px;
+}
+
+.sessions-filter-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Slightly wider min width */
+    gap: 15px; /* More gap between inputs */
+    margin-bottom: 20px; /* More spacing below inputs */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.form-group input.form-control {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.sessions-apply-filter-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sessions-apply-filter-button:hover {
+    background-color: #0056b3;
+}
+
+.sessions-table-responsive {
+    overflow-x: auto;
+}
+
+.sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.sessions-table th,
+.sessions-table td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.sessions-table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+}
+
+.sessions-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.sessions-table tbody tr:hover {
+    background-color: #e0e0e0;
+}

@@ -1,0 +1,86 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+    padding: 20px;
+    background-color: #f7f7f7; /* Light grey background */
+    text-align: center;
+  }
+  
+  .home-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .home-title-highlight {
+    color: #007bff; /* Blue color for MediLink */
+  }
+  
+  .home-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: #666;
+  }
+  
+  .home-buttons {
+    display: flex;
+    gap: 20px; /* Space between the buttons */
+  }
+  
+  .home-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: 120px; /* Ensure buttons have a minimum width */
+    text-align: center;
+  }
+  
+  .home-button.primary {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+  }
+  
+  .home-button.primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .home-button.secondary {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+  }
+  
+  .home-button.secondary:hover {
+    background-color: #e6f0ff;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .home-title {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+  
+    .home-subtitle {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+  
+    .home-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .home-button {
+      width: 100%;
+    }
+  }

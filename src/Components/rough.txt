@@ -1,0 +1,88 @@
+import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import Sessions from './Components/HandilingSessions';
+import Appointment from './Components/Appointment';
+import UserRegistration from './Components/UserRegistration';
+import Consultations from './Components/Consultations';
+import ViewNotifications from './Components/ViewNotifications';
+
+import './Styles.css';
+import PatientDashboard from './Dashboard/PatientDashboard';
+import DoctorDashboard from './Dashboard/DoctorDashboard';
+import Login from './Components/Login';
+import Home from './Components/Home';
+import { UserProvider } from './Components/UserContext'
+    // function App() {
+    //   const [selectedComponent, setSelectedComponent] = useState("GetAllSessionDetails");
+    
+    //   const renderComponent = () => {
+    //     switch (selectedComponent) {
+    //       case "Session Details":
+    //         return <GetAllSessionDetails />;
+    //       case "FetchSessionById":
+    //         return <FetchSessionById />;
+    //       case "CRUD":
+    //         return <CRUD />;
+    //       case "GenerateAvailability":
+    //         return <GenerateAvailability />;
+    //       default:
+    //         return <GetAllSessionDetails />;
+    //     }
+    //   };
+    
+    //   return (
+    //     <div>          
+    //       {/* <Appointment />
+    //       <Sessions /> */}
+    //       <div className="button-group">
+    //         <p>
+    //         <button onClick={() => setSelectedComponent("GetAllSessionDetails")}>Session Details</button>
+    //         <button onClick={() => setSelectedComponent("FetchSessionById")}>FetchSessionById</button>
+    //         <button onClick={() => setSelectedComponent("CRUD")}>CRUD</button>
+    //         <button onClick={() => setSelectedComponent("GenerateAvailability")}>GenerateAvailability</button>
+    //         </p>
+    //       </div>
+    //       <div className="component-display">
+    //         {renderComponent()}
+    //       </div>
+    //     </div>
+    //   );
+    // }
+function App(){
+  return (
+    <Router>
+<Routes>
+<UserProvider>
+<Route path="/" element={<Login />} />
+</UserProvider>
+<Route path="/register" element={<UserRegistration />} />
+<Route path="/patientdashboard" element={<PatientDashboard />} />
+<Route path="/doctordashboard" element={<DoctorDashboard />} />
+{/* <Route path="/profile" element={<Profile />} /> */}
+<Route path="/appointments" element={<Appointment />} />
+<Route path="/prescriptions" element={<Consultations />} />
+<Route path="/UserRegistration" element={<UserRegistration />} />
+{/* <Route path="/reports" element={<Reports />} /> */}
+</Routes>
+</Router>
+//   <div>
+//        <Login />
+//       <UserRegistration /> 
+//        <Router>
+//              <Routes>
+//                  <Route path="/login" element={<Login />} />
+//              </Routes>
+//          </Router> 
+// <ViewNotifications />
+//        <Appointment />
+//       <Sessions />
+//       <Consultations />
+//       <DoctorDashboard />
+//       <PatientDashboard /> 
+//     </div>
+  )
+}
+
+export default App;

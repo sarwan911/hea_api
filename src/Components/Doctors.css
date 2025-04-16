@@ -1,0 +1,141 @@
+/* DoctorList.css */
+
+.doctor-list-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.doctor-list-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #374151; /* Dark gray */
+}
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.doctor-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.doctor-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  padding: 20px;
+  background-color: #f3f4f6; /* Light gray */
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b; /* Darker gray */
+  marginBottom: 8px;
+}
+
+.card-specialization {
+  color: #6b7280; /* Medium gray */
+  font-size: 1rem;
+}
+
+.doctor-role {
+  background-color: #d1fae5; /* Light green */
+  color: #10b981; /* Green */
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.detail-item {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #6b7280;
+  margin-right: 8px;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #ef4444; /* Red */
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+/* React Paginate Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  background-color: #eee;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination .disabled a {
+  color: #777;
+  cursor: not-allowed;
+}
+
+.pagination .break-me a {
+  border: none;
+  cursor: default;
+}
