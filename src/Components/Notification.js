@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Notification.css';
 
 const API_URL = 'https://localhost:7272/api/Notifications';
 

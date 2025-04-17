@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import './Appointment.css';
 
 const Appointment = () => {
   const { user } = useContext(UserContext);

@@ -6,6 +6,7 @@ import ProfilePage from '../Components/ProfilePage';
 import Consultation from '../Components/Consultation';
 import NotificationComponent from '../Components/Notification';
 import './doctordashboard.css';
+import DoctorView from '../Components/DoctorView';
 
 const DoctorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState('HandlingSessions');
@@ -23,7 +24,7 @@ const DoctorDashboard = () => {
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
-        return <HandlingSessions />;
+        return <DoctorView />;
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProfilePage.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -8,11 +8,8 @@ const ProfilePage = () => {
   const [editFormData, setEditFormData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  // In a real application, you would likely get the user ID from
-  // a route parameter or some other authentication state management.
-  const userIdToFetch = localStorage.getItem('userId'); // Example: Get from localStorage
+  // const navigate = useNavigate();
+  const userIdToFetch = localStorage.getItem('userId'); 
 
   const fetchUserProfile = async () => {
     if (!userIdToFetch) {
@@ -73,16 +70,6 @@ const ProfilePage = () => {
     setEditFormData(user);
     setIsEditing(false);
     console.log("handleCancelClick: Edit cancelled, form reset:", user, "isEditing set to false"); // Log cancel action
-  };
-
-  const handleLogout = () => {
-    // Clear any local authentication data
-    localStorage.removeItem('userId');
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    console.log("handleLogout: User logged out, local storage cleared"); // Log logout
-    // Redirect the user to the login page or homepage
-    navigate('/login'); // Adjust the path as needed
   };
 
   if (loading) {
@@ -182,7 +169,6 @@ const ProfilePage = () => {
           <p><strong>Address:</strong> {user.address}</p>
           <div className="button-group">
             <button onClick={handleEditClick}>Edit Profile</button>
-            <button onClick={handleLogout}>Logout</button>
           </div>
         </div>
       )}
