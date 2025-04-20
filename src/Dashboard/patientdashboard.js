@@ -6,16 +6,19 @@ import ViewNotifications from '../Components/ViewNotifications'; // Adjust the p
 import ProfilePage from '../Components/ProfilePage';
 import Consultations from '../Components/Consultations';
 import './patientdashboard.css'; // Import the CSS file
+import GenerateAvailabilityForm from '../Components/GenerateAvailabilityForm';
 
 const PatientDashboard = () => {
-  const [activeComponent, setActiveComponent] = useState('Sessions'); // Default to Sessions
+  const [activeComponent, setActiveComponent] = useState('Appointment'); // Default to Sessions
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case 'Sessions':
-        return <Sessions />;
+      // case 'Sessions':
+      //   return <Sessions />;
       case 'Appointment':
         return <Appointment />;
+      case 'GenerateDoctorAvailability':
+        return <GenerateAvailabilityForm />;
       case 'Consultations':
         return <Consultations />;
       case 'ViewNotifications':
@@ -23,24 +26,30 @@ const PatientDashboard = () => {
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
-        return <Sessions />; // Default to Sessions if an invalid state occurs
+        return <Appointment />; // Default to Sessions if an invalid state occurs
     }
   };
 
   return (
     <div className="patient-dashboard-container">
       <nav className="patient-dashboard-nav">
-        <button
+        {/* <button
           className={activeComponent === 'Sessions' ? 'active' : ''}
           onClick={() => setActiveComponent('Sessions')}
         >
           Sessions
-        </button>
+        </button> */}
         <button
           className={activeComponent === 'Appointment' ? 'active' : ''}
           onClick={() => setActiveComponent('Appointment')}
         >
           Appointment
+        </button>
+        <button
+          className={activeComponent === 'GenerateDoctorAvailability' ? 'active' : ''}
+          onClick={() => setActiveComponent('GenerateDoctorAvailability')}
+        >
+          Generate Doctor Availability
         </button>
         <button
           className={activeComponent === 'Consultations' ? 'active' : ''}
@@ -52,7 +61,7 @@ const PatientDashboard = () => {
           className={activeComponent === 'ViewNotifications' ? 'active' : ''}
           onClick={() => setActiveComponent('ViewNotifications')}
         >
-          View Notifications
+          Notifications
         </button>
         <button
           className={activeComponent === 'ProfilePage' ? 'active' : ''}

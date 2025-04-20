@@ -8,16 +8,18 @@ const Appointment = () => {
   const [appointments, setAppointments] = useState([]);
   const [newAppointment, setNewAppointment] = useState({
     sessionId: '',
-    patientId: user.userId, // Use userId from context
-    status: 'Booked' // Default value for the dropdown
+    patientId: user?.userId || '', // Ensure userId is available
+    status: 'Booked', // Default value for the dropdown
   });
   const [editingAppointment, setEditingAppointment] = useState(null);
   const [editDetails, setEditDetails] = useState({});
   const [showAppointments, setShowAppointments] = useState(false);
 
   useEffect(() => {
-    fetchAppointments();
-  }, [user.userId]);
+    if (user?.userId) {
+      fetchAppointments();
+    }
+  }, [user?.userId]);
 
   const fetchAppointments = async () => {
     try {
@@ -39,11 +41,22 @@ const Appointment = () => {
 
   const handleAddAppointment = async () => {
     try {
-      await axios.post('https://localhost:7272/api/Appointments', newAppointment);
+      // Ensure the newAppointment object is valid
+      if (!newAppointment.sessionId || !newAppointment.patientId) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      await axios.post(`https://localhost:7272/api/Appointments`, newAppointment, {
+        headers: {
+          'Content-Type': 'application/json', // Ensure correct content type
+        },
+      });
       fetchAppointments();
       setNewAppointment({ sessionId: '', patientId: user.userId, status: 'Booked' });
     } catch (error) {
       console.error('Error adding appointment:', error);
+      alert('Failed to add appointment. Please try again.');
     }
   };
 
@@ -65,7 +78,7 @@ const Appointment = () => {
   const deleteAppointment = async (id) => {
     try {
       await axios.delete(`https://localhost:7272/api/Appointments/${id}`);
-      setAppointments(appointments.filter(app => app.appointmentId !== id));
+      setAppointments(appointments.filter((app) => app.appointmentId !== id));
     } catch (error) {
       console.error('Error deleting appointment:', error);
     }
@@ -109,6 +122,7 @@ const Appointment = () => {
           placeholder="Patient ID"
           value={editingAppointment ? editDetails.patientId : newAppointment.patientId}
           onChange={handleInputChange}
+          disabled // Disable editing patientId to prevent accidental changes
         />
         <select
           name="status"

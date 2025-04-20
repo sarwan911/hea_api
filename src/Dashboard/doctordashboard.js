@@ -6,6 +6,7 @@ import ProfilePage from '../Components/ProfilePage';
 import Consultation from '../Components/Consultation';
 import NotificationComponent from '../Components/Notification';
 import './doctordashboard.css';
+import ViewNotifications from '../Components/ViewNotifications';
 
 const DoctorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState('HandlingSessions');
@@ -16,10 +17,10 @@ const DoctorDashboard = () => {
         return <HandlingSessions />;
       case 'Consultation':
         return <Consultation />; 
-      case 'Consultations':
-        return <Consultations />;
+      // case 'Consultations':
+      //   return <Consultations />;
       case 'Notification':
-      return <NotificationComponent /> ;
+      return <ViewNotifications /> ;
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
@@ -40,14 +41,14 @@ const DoctorDashboard = () => {
           className={activeComponent === 'Consultation' ? 'active' : ''}
           onClick={() => setActiveComponent('Consultation')}
           >
-            Consultation
+            Consultations
           </button>
-        <button
+        {/* <button
           className={activeComponent === 'Consultations' ? 'active' : ''}
           onClick={() => setActiveComponent('Consultations')}
         >
           Consultations
-        </button>
+        </button> */}
         <button
           className={activeComponent === 'Notification' ? 'active' : ''}
           onClick={() => setActiveComponent('Notification')}

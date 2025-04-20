@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Sessions.css'; // Import the CSS file
+import { UserContext } from './UserContext';
 
 const API_URL = 'https://localhost:7272/api/DocAvailabilities';
 
@@ -13,24 +14,29 @@ const Sessions = () => {
         startTime: '',
         location: '',
     });
-    const [newSession, setNewSession] = useState({
-        doctorId: '',
-        location: '',
-        availableDate: '',
-    });
-    const [editingSession, setEditingSession] = useState(null);
-    const [editDetails, setEditDetails] = useState({});
-    const [selectedSessions, setSelectedSessions] = useState([]);
-    const [showFilters, setShowFilters] = useState(false);
     const [filteredSessionsData, setFilteredSessionsData] = useState([]); // Separate state for filtered data
+    const [showFilters, setShowFilters] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+    const sessionsPerPage = 5; // Number of sessions per page
+
+    const { user } = useContext(UserContext); // Access user from UserContext
 
     useEffect(() => {
-        loadSessions();
-    }, []);
+        if (user && user.userId) { // Ensure user and userId exist before fetching
+            loadSessions();
+        }
+    }, [user]); // Add user as a dependency to re-run when it changes
 
     const loadSessions = async () => {
         try {
-            const response = await axios.get(API_URL);
+            let response;
+            if (user.role === 'Doctor') {
+                // Fetch only the logged-in doctor's sessions
+                response = await axios.get(`${API_URL}/doctor/${user.userId}`);
+            } else if (user.role === 'Patient') {
+                // Fetch all available doctor sessions
+                response = await axios.get(`${API_URL}`);
+            }
             setSessions(response.data);
             setFilteredSessionsData(response.data); // Initialize filtered data with all sessions
         } catch (error) {
@@ -40,51 +46,36 @@ const Sessions = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (editingSession) {
-            setEditDetails({ ...editDetails, [name]: value });
-        } else {
-            setNewSession({ ...newSession, [name]: value });
-        }
         setFilters({ ...filters, [name]: value });
     };
 
-    const handleAddSession = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post(`${API_URL}/generate`, null, {
-                params: newSession,
-            });
-            loadSessions();
-            setNewSession({ doctorId: '', location: '', availableDate: '' });
-        } catch (error) {
-            console.error('Error adding session:', error);
-        }
-    };
-
     const handleFilter = () => {
+        const normalizedStartTime = filters.startTime ? `${filters.startTime}:00` : ''; // Convert to HH:mm:00 format
+    
         const result = sessions.filter((session) => {
             return (
                 (!filters.doctorId || session.doctorId.toString().includes(filters.doctorId)) &&
                 (!filters.availableDate || session.availableDate === filters.availableDate) &&
-                (!filters.startTime || session.startTime === filters.startTime) &&
+                (!filters.startTime || session.startTime === normalizedStartTime) &&
                 (!filters.location || session.location.toLowerCase().includes(filters.location.toLowerCase()))
             );
         });
+    
         setFilteredSessionsData(result); // Update the filtered data state
         setShowFilters(false); // Hide filters after applying
-    };
-
-    const handleCheckboxChange = (sessionId) => {
-        setSelectedSessions((prevSelected) =>
-            prevSelected.includes(sessionId)
-                ? prevSelected.filter((id) => id !== sessionId)
-                : [...prevSelected, sessionId]
-        );
+        setCurrentPage(1); // Reset to the first page after filtering
     };
 
     const toggleFiltersVisibility = () => {
         setShowFilters(!showFilters);
     };
+
+    // Pagination logic
+    const indexOfLastSession = currentPage * sessionsPerPage;
+    const indexOfFirstSession = indexOfLastSession - sessionsPerPage;
+    const currentSessions = filteredSessionsData.slice(indexOfFirstSession, indexOfLastSession);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="sessions-container">
@@ -149,31 +140,49 @@ const Sessions = () => {
             )}
 
             <div className="sessions-table-responsive">
-                <table className="sessions-table">
-                    <thead>
-                        <tr>
-                            <th>Session ID</th>
-                            <th>Doctor ID</th>
-                            <th>Available Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredSessionsData.map((session) => (
-                            <tr key={session.sessionId}>
-                                <td>{session.sessionId}</td>
-                                <td>{session.doctorId}</td>
-                                <td>{session.availableDate}</td>
-                                <td>{session.startTime}</td>
-                                <td>{session.endTime}</td>
-                                <td>{session.location}</td>
+                {filteredSessionsData.length === 0 ? (
+                    <p className="no-sessions-message">No sessions found.</p> // Display message if no sessions are found
+                ) : (
+                    <table className="sessions-table">
+                        <thead>
+                            <tr>
+                                <th>Session ID</th>
+                                {user?.role === 'Patient' && <th>Doctor ID</th>} {/* Conditionally render Doctor ID */}
+                                <th>Available Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Location</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {currentSessions.map((session) => (
+                                <tr key={session.sessionId}>
+                                    <td>{session.sessionId}</td>
+                                    {user?.role === 'Patient' && <td>{session.doctorId}</td>} {/* Conditionally render Doctor ID */}
+                                    <td>{session.availableDate}</td>
+                                    <td>{session.startTime}</td>
+                                    <td>{session.endTime}</td>
+                                    <td>{session.location}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
+
+            {filteredSessionsData.length > 0 && (
+                <div className="pagination">
+                    {Array.from({ length: Math.ceil(filteredSessionsData.length / sessionsPerPage) }, (_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => paginate(index + 1)}
+                            className={currentPage === index + 1 ? 'active' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

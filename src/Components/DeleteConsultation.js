@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-import "./DeleteConsultation.css"; // Import the CSS file
+import "./DeleteConsultation.css";
 
 const API_URL = "https://localhost:7272/api/Consultations";
 
 const DeleteConsultation = ({ consultationId, loadConsultations }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`<span class="math-inline">\{API\_URL\}/</span>{consultationId}`);
+      await axios.delete(`${API_URL}/${consultationId}`);
       loadConsultations(); // Refresh data
     } catch (error) {
       console.error("Error deleting consultation:", error);

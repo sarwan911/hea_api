@@ -1,17 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
+import { UserContext, UserProvider } from './UserContext';
+import './Consultation.css';
 
 const Consultations = () => {
   const [consultations, setConsultations] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetchConsultations();
-  }, []);
+    if (user && user.userId) { // Ensure user and userId exist before fetching
+      fetchConsultations();
+    }
+  }, [user]); 
 
   const fetchConsultations = async () => {
     try {
-      const response = await axios.get('https://localhost:7272/api/Consultations');
-      setConsultations(response.data);
+      let endpoint = '';
+      if (user.role === 'Doctor') {
+        endpoint = `https://localhost:7272/api/Consultations/doctor/${user.userId}`;
+      } else if (user.role === 'Patient') {
+        endpoint = `https://localhost:7272/api/Consultations/patient/${user.userId}`;
+      }
+  
+      if (endpoint) {
+        const response = await axios.get(endpoint);
+        setConsultations(response.data);
+      } else {
+        console.error('Invalid user role. Cannot fetch consultations.');
+      }
     } catch (error) {
       console.error('Error fetching consultations:', error);
     }
