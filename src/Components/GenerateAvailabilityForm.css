@@ -1,0 +1,85 @@
+/* General container styling */
+div {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  /* Form container styling */
+  form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  form .button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* No sessions message */
+  p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+  }

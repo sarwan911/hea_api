@@ -7,6 +7,7 @@ import Consultation from '../Components/Consultation';
 import NotificationComponent from '../Components/Notification';
 import './doctordashboard.css';
 import ViewNotifications from '../Components/ViewNotifications';
+import CreateSessions from '../Components/CreateSessions';
 
 const DoctorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState('HandlingSessions');
@@ -15,6 +16,8 @@ const DoctorDashboard = () => {
     switch (activeComponent) {
       case 'HandlingSessions':
         return <HandlingSessions />;
+      case 'CreateSessions':
+        return <CreateSessions />;
       case 'Consultation':
         return <Consultation />; 
       // case 'Consultations':
@@ -24,18 +27,24 @@ const DoctorDashboard = () => {
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
-        return <HandlingSessions />;
+        return <CreateSessions />;
     }
   };
 
   return (
     <div className="doctor-dashboard-container">
       <nav className="doctor-dashboard-nav">
-        <button
+        {/* <button
           className={activeComponent === 'HandlingSessions' ? 'active' : ''}
           onClick={() => setActiveComponent('HandlingSessions')}
         >
           Handling Sessions
+        </button> */}
+        <button
+          className={activeComponent === 'CreateSessions' ? 'active' : ''}
+          onClick={() => setActiveComponent('CreateSessions')}
+        >
+          Create Sessions
         </button>
         <button
           className={activeComponent === 'Consultation' ? 'active' : ''}

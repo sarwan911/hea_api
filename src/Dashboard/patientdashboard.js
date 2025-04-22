@@ -15,10 +15,10 @@ const PatientDashboard = () => {
     switch (activeComponent) {
       // case 'Sessions':
       //   return <Sessions />;
-      case 'Appointment':
-        return <Appointment />;
       case 'GenerateDoctorAvailability':
         return <GenerateAvailabilityForm />;
+      case 'Appointment':
+        return <Appointment />;
       case 'Consultations':
         return <Consultations />;
       case 'ViewNotifications':
@@ -26,7 +26,7 @@ const PatientDashboard = () => {
       case 'ProfilePage':
         return <ProfilePage/>;
       default:
-        return <Appointment />; // Default to Sessions if an invalid state occurs
+        return <GenerateAvailabilityForm />; // Default to GenerateAvailabilityForm if an invalid state occurs
     }
   };
 
@@ -40,16 +40,16 @@ const PatientDashboard = () => {
           Sessions
         </button> */}
         <button
-          className={activeComponent === 'Appointment' ? 'active' : ''}
-          onClick={() => setActiveComponent('Appointment')}
-        >
-          Appointment
-        </button>
-        <button
           className={activeComponent === 'GenerateDoctorAvailability' ? 'active' : ''}
           onClick={() => setActiveComponent('GenerateDoctorAvailability')}
         >
           Generate Doctor Availability
+        </button>
+        <button
+          className={activeComponent === 'Appointment' ? 'active' : ''}
+          onClick={() => setActiveComponent('Appointment')}
+        >
+          Appointment
         </button>
         <button
           className={activeComponent === 'Consultations' ? 'active' : ''}

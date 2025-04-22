@@ -55,10 +55,9 @@ const UserRegistration = () => {
                 const response = await axios.post('https://localhost:7272/api/Users/register', values);
                 console.log('Registration Response:', response);
                 if (response.status === 201) {
-                    alert('User registered successfully!');
+                    toast.success('User registered successfully!');
 
-                    const { token, role } = response.data;
-                    const userId = values.name; // Using name as userId for context
+                    const { userId, token, role } = response.data;
 
                     // Store token, userId, and role in localStorage
                     localStorage.setItem('token', token);
@@ -68,21 +67,15 @@ const UserRegistration = () => {
                     // Update user context
                     setUserContext({ userId, token, role });
 
-                    // Navigate based on user role
-                    if (role === 'Patient') {
-                        console.log(role);
-                        navigate('/patientdashboard');
-                    } else if (role === 'Doctor') {
-                        console.log("doc  "+role);
-                        navigate('/doctordashboard');
-                    }
+                    // Redirect to the profile page
+                    navigate('/profile');
 
                     // Reset the form
                     formik.resetForm();
                 }
             } catch (error) {
                 console.error('Error registering user:', error);
-                alert('An error occurred during registration.');
+                toast.error('An error occurred during registration.');
             }
         },
     });
